@@ -93,15 +93,15 @@ void niszczenie(plansza* stol,int* sprawdzone){
         }
     }
 }
-int postaw_pionek(plansza* stol,int pole)
+int postaw_pionek(plansza* stol,int* pole)
 {
-    if(stol->wartosci[pole] == " "){
-        stol->wartosci[pole] = stol->gracz_na_ruchu;  
+    if(stol->wartosci[*pole] == " "){
+        stol->wartosci[*pole] = stol->gracz_na_ruchu;  
         for(int i = 0;i < wiersze * kolumny + 1;i++){
             int sprawdzone [wiersze * kolumny] = {};    
             int oddechy_grupy = 0;
-            liczenie_oddechow_grupy(stol,i == wiersze * kolumny ? pole : i ,sprawdzone,&oddechy_grupy);
-            if(oddechy_grupy == 0 && i != pole){  
+            liczenie_oddechow_grupy(stol,i == wiersze * kolumny ? *pole : i ,sprawdzone,&oddechy_grupy);
+            if(oddechy_grupy == 0 && i != *pole){  
                niszczenie(stol,sprawdzone);  
             }
         }
